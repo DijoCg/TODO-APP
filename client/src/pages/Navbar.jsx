@@ -14,28 +14,48 @@ function Navbar() {
   const handleLogout = () => {
     localStorage.removeItem("user");
     localStorage.removeItem("token");
-    window.location.href = "/login"; // redirect to login
+    window.location.href = "/login";
   };
 
   return (
-    <div className="bg-gray-900 text-white py-6 px-8 shadow-md flex justify-between items-center">
-      {/* Left side: Welcome and logout */}
-      <div>
-        <h1 className="text-xl font-semibold text-white">Welcome, {username}</h1>
-        <button
-          onClick={handleLogout}
-          className="mt-2 flex items-center gap-1 bg-red-600 px-3 py-1 rounded hover:bg-red-700 transition"
-        >
-          <CiLogout size={18} />
-          Logout
-        </button>
-      </div>
+    <nav className="bg-gray-900 text-white py-8 px-4 md:px-8 shadow-md">
+      
+      
+      <div className="flex flex-col sm:flex-row items-center justify-between gap-4 sm:gap-0 relative">
+        
+        
+        <div className="sm:order-3 w-full sm:w-auto text-center sm:text-right">
+          <h1 className="text-xl sm:text-2xl font-bold text-cyan-400">To-Do App</h1>
+        </div>
 
-      {/* Centered title */}
-      <h1 className="text-2xl font-bold text-center w-full absolute left-1/2 transform -translate-x-1/2">
-        To-Do App
-      </h1>
-    </div>
+        
+        <div className="sm:order-2 w-full sm:w-auto text-center">
+          
+          
+            <h2 className="text-2xl sm:text-3xl font-extrabold tracking-wide text-white">
+            Hello,<span className="text-cyan-400">{username}</span>
+          </h2>
+        </div>
+
+        
+        <div className="sm:order-1 w-full sm:w-auto text-center sm:text-left">
+           <button
+            onClick={handleLogout}
+             
+            className="inline-flex items-center gap-2 px-3 py-1.5 rounded-md bg-gradient-to-r from-red-500 to-red-700 text-white text-sm font-medium uppercase shadow-md transform transition hover:scale-105 hover:shadow-lg hover:brightness-110 duration-300 cursor-pointer"
+          >
+            
+            <CiLogout size={16} />
+            Logout
+          
+          </button>
+         
+         
+           </div>
+      </div>
+    
+    
+    </nav>
   );
 }
 

@@ -16,13 +16,13 @@ const Login = () => {
         email,
         password,
       });
-      const { token, user} = res.data;
+      const { token, user } = res.data;
       localStorage.setItem('token', token);
-      localStorage.setItem('user', JSON.stringify(user));   
+      localStorage.setItem('user', JSON.stringify(user));
       setMessage('Login successful!');
       setEmail('');
       setPassword('');
-      navigate('/dashboard'); // Change this route based on your app
+      navigate('/dashboard');
     } catch (err) {
       console.error(err.response?.data || err.message);
       setMessage(err.response?.data?.message || 'Login failed');
@@ -30,14 +30,33 @@ const Login = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="w-full max-w-md bg-white p-8 rounded-2xl shadow-lg">
-        <h2 className="text-2xl font-bold mb-6 text-center">Login</h2>
+    <div className="min-h-screen flex flex-col items-center justify-center bg-black text-white px-4">
+      
+      
+      <h1 className="text-4xl md:text-5xl font-extrabold text-[#00ffc3] mb-15 tracking-wide text-center neon-glow">
+        Welcome to <span className="text-[#00e6b8]">To-Do App</span>
+      </h1>
+
+       
+       <div className="w-full max-w-md bg-[#111111] border border-[#00ffc3] shadow-2xl p-8 rounded-2xl backdrop-blur-md">
+        <h2 className="text-3xl font-extrabold mb-6 text-center text-[#00ffc3] tracking-wide">
+          Login
+        
+        
+        </h2>
+
         {message && (
-          <p className={`text-center text-sm mb-4 ${message.includes('successful') ? 'text-green-600' : 'text-red-500'}`}>
+          <p
+            className={`text-center text-sm mb-4 font-medium ${
+              message.includes('successful')
+                ? 'text-green-400'
+                : 'text-red-400'
+            }`}
+          >
             {message}
           </p>
         )}
+
         <form className="space-y-4" onSubmit={handleSubmit}>
           <input
             type="email"
@@ -45,7 +64,7 @@ const Login = () => {
             placeholder="Email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full px-4 py-2 border border-[#00ffc3] bg-transparent text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-[#00ffc3]"
             required
           />
 
@@ -55,24 +74,32 @@ const Login = () => {
             placeholder="Password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full px-4 py-2 border border-[#00ffc3] bg-transparent text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-[#00ffc3]"
             required
           />
 
           <button
             type="submit"
-            className="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition"
+            className="w-full bg-[#00ffc3] text-black font-semibold py-2 rounded-lg hover:bg-[#00e6b8] transition duration-200"
           >
             Login
           </button>
         </form>
-        <p className="text-center mt-4 text-sm text-gray-600">
+
+        <p className="text-center mt-4 text-sm text-gray-400">
           Don’t have an account?{' '}
-          <a href="/" className="text-blue-600 hover:underline">
+          
+          
+          <a href="/" className="text-[#00ffc3] hover:underline">
             Sign Up
-          </a>
+         
+           </a>
         </p>
       </div>
+
+    
+
+
     </div>
   );
 };

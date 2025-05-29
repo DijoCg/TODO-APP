@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const Task = require('../models/Task');
 
-// Get all tasks
+
 router.get('/fetchTasks/:userId', async (req, res) => {
   console.log("inside fetchTasks:::::");
   const { userId } = req.params;
@@ -16,7 +16,6 @@ router.get('/fetchTasks/:userId', async (req, res) => {
   }
 });
 
-// Add new task
 router.post('/addNewTask/:userId', async (req, res) => {
   console.log("inside addnewtask");
   const { task, priority, time, date } = req.body;
@@ -25,7 +24,7 @@ router.post('/addNewTask/:userId', async (req, res) => {
   console.log("userId", userId);
 
   try {
-    const newTask = new Task({ task, priority, time, date, userId }); // Adjust to match your Mongoose schema
+    const newTask = new Task({ task, priority, time, date, userId });
     await newTask.save();
     res.status(201).json(newTask);
   } catch (err) {
@@ -35,7 +34,7 @@ router.post('/addNewTask/:userId', async (req, res) => {
 });
 
 
-// Update task
+
 router.put('/updateTodoStatus/:id', async (req, res) => {
   console.log("inside update taskkk");
   const { status } = req.body;
@@ -50,7 +49,7 @@ router.put('/updateTodoStatus/:id', async (req, res) => {
   }
 });
 
-// Delete task
+
 router.delete('/deleteTodo/:id', async (req, res) => {
   try {
     await Task.findByIdAndDelete(req.params.id);
@@ -65,9 +64,9 @@ router.put('/editTodo/:id', async (req, res) => {
     const updatedTask = await Task.findByIdAndUpdate(
       req.params.id,
       {
-        $set: req.body, // update with the incoming fields
+        $set: req.body, 
       },
-      { new: true } // return the updated document
+      { new: true }
     );
 
     if (!updatedTask) {
